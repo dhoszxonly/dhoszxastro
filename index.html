@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DhoszxOnly!? | Astronomi & Galaksi</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,Helvetica,sans-serif}
+body{background:black;color:white;overflow-x:hidden}
+
+/* INTRO */
+#intro{
+  position:fixed;inset:0;background:black;z-index:999;
+  display:flex;align-items:center;justify-content:center;
+  transition:opacity 1.5s ease
+}
+#intro.hide{opacity:0;pointer-events:none}
+
+/* INTRO TEXT */
+#introText{
+  position:absolute;
+  text-align:center;
+  animation:fadeIn 3.5s ease forwards;
+}
+#introText h1{
+  font-size:34px;
+  letter-spacing:2px;
+  background:linear-gradient(90deg,#ffd700,#fff2b0,#c9a400);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+#introText p{
+  margin-top:14px;
+  font-size:15px;
+  opacity:.85;
+  font-style:italic;
+}
+
+@keyframes fadeIn{
+  from{opacity:0;transform:translateY(25px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+/* HEADER */
+header{position:fixed;top:15px;left:20px;z-index:5}
+header h1{
+  font-size:24px;
+  background:linear-gradient(90deg,#ffd700,#fff2b0,#c9a400);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+header p{opacity:.75;font-size:13px}
+
+/* GALAXY */
+#galaxy{position:fixed;inset:0;z-index:-2}
+
+/* SPACE */
+canvas#space{position:fixed;inset:0;z-index:-1}
+
+/* CONTENT */
+section{
+  max-width:900px;margin:130px auto;padding:30px;
+  background:rgba(0,0,0,.6);
+  border-radius:22px;
+  box-shadow:0 0 35px rgba(255,215,0,.15);
+  backdrop-filter:blur(6px)
+}
+section h2{
+  background:linear-gradient(90deg,#ffd700,#fff2b0,#c9a400);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  margin-bottom:10px
+}
+section p{line-height:1.8;opacity:.92}
+
+/* TAG */
+.tag{
+  display:inline-block;padding:5px 14px;margin-bottom:10px;
+  border-radius:20px;
+  background:linear-gradient(90deg,#ffd700,#fff2b0,#c9a400);
+  font-size:12px;
+  color:black;
+  font-weight:bold
+}
+
+/* QUOTES */
+.quote{
+  margin-top:18px;
+  padding-left:14px;
+  border-left:3px solid gold;
+  font-style:italic;
+  opacity:.85
+}
+.finalQuote{
+  text-align:center;
+  font-size:18px;
+  font-style:italic;
+  opacity:.9;
+  margin-top:20px;
+  background:linear-gradient(90deg,#ffd700,#fff2b0,#c9a400);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>DhoszxOnly!?</h1>
+  <p>Astronomi • Galaksi • Motivasi 🚀</p>
+</header>
+
+<!-- INTRO -->
+<div id="intro">
+  <canvas id="introCanvas"></canvas>
+  <div id="introText">
+    <h1>JELAJAHI ALAM SEMESTA</h1>
+    <p>Di tengah luasnya galaksi,<br>manusia menemukan arti dirinya.</p>
+  </div>
+</div>
+
+<canvas id="galaxy"></canvas>
+<canvas id="space"></canvas>
+
+<section>
+  <span class="tag">BINTANG</span>
+  <h2>Bintang</h2>
+  <p>Bintang adalah sumber energi kosmik yang lahir dari tekanan ekstrem.</p>
+  <div class="quote">Tekanan tidak selalu menghancurkan, kadang ia menciptakan cahaya.</div>
+</section>
+
+<section>
+  <span class="tag">PLANET</span>
+  <h2>Planet</h2>
+  <p>Planet mengorbit dengan keseimbangan sempurna.</p>
+  <div class="quote">Menemukan posisi yang tepat adalah kunci bertahan hidup.</div>
+</section>
+
+<section>
+  <span class="tag">GALAKSI</span>
+  <h2>Galaksi</h2>
+  <p>Rumah bagi miliaran bintang dan mimpi besar.</p>
+  <div class="quote">Kita kecil di semesta, tapi rasa ingin tahu tak terbatas.</div>
+</section>
+
+<section>
+  <span class="tag">BLACK HOLE</span>
+  <h2>Black Hole</h2>
+  <p>Misteri yang melengkungkan ruang dan waktu.</p>
+  <div class="quote">Tidak semua misteri perlu dijawab untuk dikagumi.</div>
+</section>
+
+<section>
+  <div class="finalQuote" id="finalQuote"></div>
+</section>
+
+<script>
+/* FINAL QUOTE RANDOM */
+const quotes=[
+"Alam semesta terlalu luas untuk ditakuti,<br>dan terlalu indah untuk diabaikan.",
+"Kita hanyalah debu kosmik,<br>namun mimpi bisa menembus galaksi.",
+"Semesta tak pernah terburu-buru,<br>namun selalu tepat waktu.",
+"Semakin gelap angkasa,<br>semakin terang cahaya harapan.",
+"Jika semesta terus mengembang,<br>mengapa pikiranmu dibatasi?"
+];
+document.getElementById("finalQuote").innerHTML=
+quotes[Math.floor(Math.random()*quotes.length)];
+
+/* INTRO BLACK HOLE */
+const ic=document.getElementById("introCanvas"),ctxi=ic.getContext("2d");
+ic.width=innerWidth;ic.height=innerHeight;
+let p=[];
+for(let i=0;i<520;i++)p.push({a:Math.random()*6.28,r:90+Math.random()*260,s:.002+Math.random()*.003});
+function introBH(){
+  ctxi.fillStyle="rgba(0,0,0,.25)";
+  ctxi.fillRect(0,0,ic.width,ic.height);
+  const cx=ic.width/2,cy=ic.height/2;
+  p.forEach(o=>{
+    o.a+=o.s;o.r*=.996;
+    const x=cx+Math.cos(o.a)*o.r,y=cy+Math.sin(o.a)*o.r*.45;
+    ctxi.fillStyle="rgba(255,215,0,.7)";
+    ctxi.fillRect(x,y,2,2);
+    if(o.r<70)o.r=260;
+  });
+  ctxi.beginPath();ctxi.arc(cx,cy,70,0,6.28);
+  ctxi.fillStyle="black";ctxi.fill();
+  requestAnimationFrame(introBH);
+}
+introBH();
+setTimeout(()=>intro.classList.add("hide"),6000);
+intro.onclick=()=>intro.classList.add("hide");
+
+/* GALAXY */
+const g=document.getElementById("galaxy"),gx=g.getContext("2d");
+function resize(){g.width=innerWidth;g.height=innerHeight}
+resize();
+let stars=[];
+for(let i=0;i<300;i++)stars.push({x:Math.random()*g.width,y:Math.random()*g.height,r:Math.random()*1.5,a:Math.random()*6.28,s:.0005+Math.random()*.001});
+function galaxy(){
+  gx.clearRect(0,0,g.width,g.height);
+  let grad=gx.createRadialGradient(g.width*.5,g.height*.6,0,g.width*.5,g.height*.6,g.width);
+  grad.addColorStop(0,"rgba(180,120,255,.08)");
+  grad.addColorStop(1,"rgba(0,0,0,0)");
+  gx.fillStyle=grad;gx.fillRect(0,0,g.width,g.height);
+  gx.fillStyle="white";
+  stars.forEach(s=>{
+    s.a+=s.s;
+    gx.globalAlpha=.6+Math.sin(s.a)*.4;
+    gx.beginPath();gx.arc(s.x,s.y,s.r,0,6.28);gx.fill();
+  });
+  gx.globalAlpha=1;
+  requestAnimationFrame(galaxy);
+}
+galaxy();
+
+/* SPACE */
+const c=document.getElementById("space"),ctx=c.getContext("2d");
+c.width=innerWidth;c.height=innerHeight;
+let sp=Array.from({length:200},()=>({x:Math.random()*c.width,y:Math.random()*c.height,s:Math.random()*1.5+.5}));
+function space(){
+  ctx.fillStyle="black";ctx.fillRect(0,0,c.width,c.height);
+  ctx.fillStyle="white";
+  sp.forEach(st=>{st.y+=st.s;if(st.y>c.height){st.y=0;st.x=Math.random()*c.width}ctx.fillRect(st.x,st.y,st.s,st.s)});
+  requestAnimationFrame(space);
+}
+space();
+onresize=()=>{resize();ic.width=c.width=innerWidth;ic.height=c.height=innerHeight}
+</script>
+
+</body>
+</html>
+
