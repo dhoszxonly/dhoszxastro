@@ -1,256 +1,206 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DhoszxOnly!? | Astronomi & Galaksi</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>DhoszxOnly!? Astronomi</title>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,Helvetica,sans-serif}
-body{background:black;color:white;overflow-x:hidden}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial, Helvetica, sans-serif}
+body{
+  color:white;
+  background: radial-gradient(circle at top, #1a1a3a, #050510);
+  min-height:100vh;
+  overflow-x:hidden;
+}
+body::before{
+  content:"";
+  position:fixed;inset:0;
+  background:
+    radial-gradient(2px 2px at 20% 30%, white, transparent),
+    radial-gradient(1.5px 1.5px at 60% 70%, white, transparent),
+    radial-gradient(2px 2px at 80% 20%, white, transparent),
+    radial-gradient(1px 1px at 30% 80%, white, transparent);
+  animation:twinkle 6s infinite alternate;
+  opacity:0.6;
+}
+@keyframes twinkle{from{opacity:.3}to{opacity:.8}}
+.container{max-width:900px;margin:0 auto;padding:20px}
 
 /* INTRO */
-#intro{
-  position:fixed;inset:0;background:black;z-index:999;
-  display:flex;align-items:center;justify-content:center;
-  transition:opacity 1.5s ease
+.intro{text-align:center;padding:70px 10px}
+.blackhole{
+  width:180px;height:180px;margin:0 auto 25px;border-radius:50%;
+  background:radial-gradient(circle, black 15%, #2b0040 40%, transparent 70%);
+  box-shadow:0 0 50px 15px rgba(0,0,0,.8);position:relative;overflow:hidden;
 }
-#intro.hide{opacity:0;pointer-events:none}
-
-#introText{
-  position:absolute;text-align:center;animation:fadeIn 3.5s ease forwards;
+.blackhole::before{
+  content:"";position:absolute;inset:-40px;border-radius:50%;
+  background:conic-gradient(#7a00ff,#ff0095,#ff9100,#7a00ff);
+  filter:blur(4px);animation:ringspin 6s linear infinite;opacity:.9;
 }
-#introText h1{
-  font-size:34px;letter-spacing:2px;
-  background:linear-gradient(90deg,#ffd700,#fff2b0,#c9a400);
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-}
-#introText p{margin-top:14px;font-size:15px;opacity:.85;font-style:italic}
+@keyframes ringspin{to{transform:rotate(360deg)}}
 
-@keyframes fadeIn{from{opacity:0;transform:translateY(25px)}to{opacity:1;transform:translateY(0)}}
-
-/* HEADER */
-header{position:fixed;top:15px;left:20px;z-index:5}
-header h1{
-  font-size:24px;
-  background:linear-gradient(90deg,#ffd700,#fff2b0,#c9a400);
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-}
-header p{opacity:.75;font-size:13px}
-
-/* BG */
-#galaxy{position:fixed;inset:0;z-index:-2;background:radial-gradient(circle at bottom,#12001f,#05000a,#000)}
-canvas#space{position:fixed;inset:0;z-index:-1}
-
-/* CONTENT */
 section{
-  max-width:900px;margin:130px auto;padding:30px;
-  background:rgba(0,0,0,.6);
-  border-radius:22px;
-  box-shadow:0 0 35px rgba(255,215,0,.15);
-  backdrop-filter:blur(6px)
+  margin:30px 0;
+  background:rgba(0,0,0,.25);
+  padding:15px;
+  border-radius:15px;
+  box-shadow:0 0 15px rgba(255,255,255,.05);
 }
-section h2{
-  background:linear-gradient(90deg,#ffd700,#fff2b0,#c9a400);
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-  margin-bottom:10px
-}
-section p{line-height:1.8;opacity:.92}
-
-.tag{
-  display:inline-block;padding:5px 14px;margin-bottom:10px;
-  border-radius:20px;
-  background:linear-gradient(90deg,#ffd700,#fff2b0,#c9a400);
-  font-size:12px;color:black;font-weight:bold
-}
+h2{margin-bottom:10px;color:#ffdfff}
 
 /* QUOTE */
-.quote{margin-top:18px;padding-left:14px;border-left:3px solid gold;font-style:italic;opacity:.85}
-.finalQuote{text-align:center;font-size:18px;font-style:italic;opacity:.9;margin-top:20px}
-
-/* NASA IMAGES */
-img.space-img{
-  width:100%;border-radius:16px;margin:15px 0;
-  box-shadow:0 0 25px rgba(255,215,0,.15)
+#quote{
+  text-align:center;
+  font-size:18px;
+  margin-top:25px;
+  opacity:0;
+  transition:opacity 1.8s ease-in-out;
 }
-.caption{opacity:.7;font-size:12px;font-style:italic;margin-top:-8px}
+#quote.show{opacity:1}
+
+/* GALLERY */
+.gallery{margin-top:30px;display:grid;gap:15px}
+.gallery-item{
+  background:#0000004a;
+  border-radius:15px;
+  padding:10px;
+  text-align:center;
+}
+.gallery img{width:100%;border-radius:12px}
+.caption{
+  margin-top:8px;
+  font-size:14px;
+  color:#e6dfff;
+}
+.caption b{color:#ffd700}
 </style>
 </head>
 
 <body>
+<div class="container">
 
-<header>
-  <h1>DhoszxOnly!?</h1>
-  <p>Astronomi • Galaksi • Motivasi 🚀</p>
-</header>
-
-<!-- INTRO -->
-<div id="intro">
-  <canvas id="introCanvas"></canvas>
-  <div id="introText">
-    <h1>JELAJAHI ALAM SEMESTA</h1>
-    <p>Di tengah luasnya galaksi,<br>manusia menemukan arti dirinya.</p>
+  <div class="intro">
+    <div class="blackhole"></div>
+    <h1>MENJELAJAHI ALAM SEMESTA 🚀</h1>
+    <p style="margin-top:10px;opacity:.8;">
+      Website Astronomi oleh <b>DhoszxOnly!?</b>
+    </p>
   </div>
+
+  <section>
+    <h2>⭐ Bintang</h2>
+    <p>Bintang adalah bola gas raksasa yang memancarkan cahaya karena reaksi nuklir di intinya.</p>
+  </section>
+
+  <section>
+    <h2>🪐 Planet</h2>
+    <p>Planet mengelilingi bintang dan tidak menghasilkan cahaya sendiri, tetapi memantulkan cahaya bintang.</p>
+  </section>
+
+  <section>
+    <h2>🌌 Galaksi</h2>
+    <p>Galaksi adalah kumpulan bintang, planet, gas, dan debu kosmik dalam jumlah yang luar biasa besar.</p>
+  </section>
+
+  <section>
+    <h2>🕳 Black Hole</h2>
+    <p>Black hole memiliki gravitasi sangat kuat hingga cahaya pun tidak bisa lolos darinya.</p>
+  </section>
+
+  <section>
+    <h2>⚛ Neutron Star</h2>
+    <p>Bintang neutron adalah sisa ledakan supernova dengan kepadatan luar biasa besar.</p>
+  </section>
+
+  <section>
+    <h2>📡 Pulsar</h2>
+    <p>Pulsar adalah bintang neutron yang memancarkan gelombang radio berdenyut secara teratur.</p>
+  </section>
+
+  <section>
+    <h2>☁️ Nebula</h2>
+    <p>Nebula adalah awan gas dan debu tempat bintang-bintang baru lahir.</p>
+  </section>
+
+  <p id="quote"></p>
+
+  <!-- GALERI DENGAN ATRIBUTI NASA -->
+  <div class="gallery">
+
+    <div class="gallery-item">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/0/00/Crab_Nebula.jpg" alt="Crab Nebula">
+      <div class="caption"><b>BY NASA 🚀</b> — Crab Nebula</div>
+    </div>
+
+    <div class="gallery-item">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Helix_Nebula.jpg" alt="Helix Nebula">
+      <div class="caption"><b>BY NASA 🚀</b> — Helix Nebula</div>
+    </div>
+
+    <div class="gallery-item">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/4/4c/Neutron_star.jpg" alt="Neutron Star">
+      <div class="caption"><b>BY NASA 🚀</b> — Neutron Star (ilustrasi)</div>
+    </div>
+
+    <div class="gallery-item">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/0/07/PSRb1509.jpg" alt="Pulsar">
+      <div class="caption"><b>BY NASA 🚀</b> — Pulsar</div>
+    </div>
+
+    <div class="gallery-item">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/c/cb/The_Blue_Marble_%28remastered%29.jpg" alt="Planet Earth">
+      <div class="caption"><b>BY NASA 🚀</b> — Planet Bumi</div>
+    </div>
+
+    <div class="gallery-item">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/5f/Black_hole_-_Messier_87_crop_max_res.jpg" alt="Black hole">
+      <div class="caption"><b>BY NASA 🚀</b> — Black Hole (M87)</div>
+    </div>
+
+  </div>
+
 </div>
 
-<canvas id="galaxy"></canvas>
-<canvas id="space"></canvas>
-
-<!-- 🌟 BINTANG -->
-<section>
-  <span class="tag">BINTANG</span>
-  <h2>Bintang</h2>
-  <img class="space-img" src="https://www.nasa.gov/wp-content/uploads/2023/03/stsci-h-p2001a-f-2560x1440-1.png" alt="Star NASA">
-  <div class="caption">Gambar NASA / Hubble</div>
-  <p>Bintang adalah sumber energi kosmik yang lahir dari tekanan dan panas ekstrem.</p>
-  <div class="quote">Tekanan tidak selalu menghancurkan — kadang justru menciptakan cahaya.</div>
-</section>
-
-<!-- 🪐 PLANET -->
-<section>
-  <span class="tag">PLANET</span>
-  <h2>Planet</h2>
-  <img class="space-img" src="https://www.nasa.gov/wp-content/uploads/2019/06/pia21345-16.jpg" alt="Saturn NASA">
-  <div class="caption">Saturnus — NASA Cassini</div>
-  <p>Planet mengorbit bintang dengan keseimbangan yang menakjubkan.</p>
-  <div class="quote">Menemukan posisi yang tepat adalah kunci untuk tetap bertahan.</div>
-</section>
-
-<!-- 🌌 GALAXI -->
-<section>
-  <span class="tag">GALAKSI</span>
-  <h2>Galaksi</h2>
-  <img class="space-img" src="https://www.nasa.gov/wp-content/uploads/2015/06/heic1509a.jpg" alt="Galaxy NASA">
-  <div class="caption">Bima Sakti — ilustrasi NASA / ESA</div>
-  <p>Galaksi adalah rumah bagi miliaran bintang dan sistem planet.</p>
-  <div class="quote">Kita kecil di alam semesta, namun rasa ingin tahu membuat kita besar.</div>
-</section>
-
-<!-- 🌈 NEBULA -->
-<section>
-  <span class="tag">CRAB NEBULA</span>
-  <h2>Crab Nebula</h2>
-  <img class="space-img" src="https://www.nasa.gov/wp-content/uploads/2023/03/crab-nebula.jpg" alt="Crab Nebula NASA">
-  <div class="caption">Crab Nebula — NASA / ESA</div>
-  <p>Sisa ledakan supernova yang kini membentuk awan gas kosmik penuh warna.</p>
-  <div class="quote">Dari kehancuran, lahir keindahan baru.</div>
-</section>
-
-<section>
-  <span class="tag">HELIX NEBULA</span>
-  <h2>Helix Nebula</h2>
-  <img class="space-img" src="https://www.nasa.gov/wp-content/uploads/2023/03/helix-nebula.jpg" alt="Helix Nebula NASA">
-  <div class="caption">Helix Nebula — “The Eye of God”</div>
-  <p>Nebula planet yang terbentuk dari sisa bintang tua.</p>
-  <div class="quote">Akhir bukan berarti berhenti — kadang hanya berubah bentuk.</div>
-</section>
-
-<!-- ⭐ NEUTRON -->
-<section>
-  <span class="tag">BINTANG NEUTRON</span>
-  <h2>Bintang Neutron</h2>
-  <img class="space-img" src="https://www.nasa.gov/wp-content/uploads/2021/06/1-neutron-star.jpg" alt="Neutron Star NASA">
-  <div class="caption">Ilustrasi Bintang Neutron — NASA</div>
-  <p>Bintang neutron sangat padat — satu sendok materinya bisa jutaan ton.</p>
-  <div class="quote">Kekuatan sejati tak perlu terlihat besar.</div>
-</section>
-
-<!-- 📡 PULSAR -->
-<section>
-  <span class="tag">PULSAR</span>
-  <h2>Pulsar</h2>
-  <img class="space-img" src="https://www.nasa.gov/wp-content/uploads/2015/06/pia17657-16.jpg" alt="Pulsar NASA">
-  <div class="caption">Pulsar — NASA</div>
-  <p>Pulsar berputar cepat sambil memancarkan gelombang energi periodik.</p>
-  <div class="quote">Konsistensi adalah sihir yang bekerja dalam diam.</div>
-</section>
-
-<!-- 🕳 BLACK HOLE -->
-<section>
-  <span class="tag">BLACK HOLE</span>
-  <h2>Black Hole</h2>
-  <img class="space-img" src="https://www.nasa.gov/wp-content/uploads/2024/01/600x337_m87_black_hole.png" alt="Black Hole EHT">
-  <div class="caption">Foto pertama black hole — kolaborasi Event Horizon Telescope</div>
-  <p>Black hole melengkungkan ruang dan waktu — misteri terdalam di alam semesta.</p>
-
-  <h3 style="text-align:center;margin-top:15px;
-  background:linear-gradient(90deg,#ffd700,#fff2b0,#c9a400);
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;">
-  MENJELAJAHI ALAM SEMESTA 🚀
-  </h3>
-</section>
-
-<section>
-  <div class="finalQuote" id="finalQuoteBox">
-    Alam semesta terlalu luas untuk ditakuti, dan terlalu indah untuk diabaikan.
-  </div>
-</section>
-
 <script>
-/* INTRO BLACK HOLE */
-const ic=document.getElementById("introCanvas"),ctxi=ic.getContext("2d");
-function rs(){ic.width=innerWidth;ic.height=innerHeight}
-rs();
-let pts=[];for(let i=0;i<800;i++)pts.push({a:Math.random()*6.28,r:120+Math.random()*300,s:.001+Math.random()*.002});
-function drawBH(){
- ctxi.fillStyle="rgba(0,0,0,.3)";ctxi.fillRect(0,0,ic.width,ic.height);
- const cx=ic.width/2,cy=ic.height/2;
- const grad=ctxi.createRadialGradient(cx,cy,40,cx,cy,220);
- grad.addColorStop(0,"rgba(255,160,0,.9)");
- grad.addColorStop(.5,"rgba(255,120,0,.8)");
- grad.addColorStop(1,"rgba(255,90,0,.1)");
- ctxi.beginPath();ctxi.ellipse(cx,cy,220,95,0,0,6.28);ctxi.fillStyle=grad;ctxi.fill();
- pts.forEach(o=>{o.a+=o.s;o.r*=.9992;const x=cx+Math.cos(o.a)*o.r,y=cy+Math.sin(o.a)*o.r*.45;ctxi.fillStyle="rgba(255,215,0,.9)";ctxi.fillRect(x,y,2,2);if(o.r<95)o.r=300;});
- ctxi.beginPath();ctxi.arc(cx,cy,90,0,6.28);ctxi.fillStyle="black";ctxi.shadowColor="rgba(255,160,0,.7)";ctxi.shadowBlur=30;ctxi.fill();ctxi.shadowBlur=0;
- requestAnimationFrame(drawBH);}
-drawBH();
-setTimeout(()=>intro.classList.add("hide"),6000);
-intro.onclick=()=>intro.classList.add("hide");
-
-/* BG */
-const g=document.getElementById("galaxy"),gx=g.getContext("2d");
-function resizeBG(){g.width=innerWidth;g.height=innerHeight}resizeBG();
-let stars=[];for(let i=0;i<300;i++)stars.push({x:Math.random()*g.width,y:Math.random()*g.height,r:Math.random()*1.5,a:Math.random()*6.28,s:.0005+Math.random()*.001});
-function galaxy(){
- gx.clearRect(0,0,g.width,g.height);
- let grad=gx.createRadialGradient(g.width*.5,g.height*.6,0,g.width*.5,g.height*.6,g.width);
- grad.addColorStop(0,"rgba(180,120,255,.08)");grad.addColorStop(1,"rgba(0,0,0,0)");
- gx.fillStyle=grad;gx.fillRect(0,0,g.width,g.height);gx.fillStyle="white";
- stars.forEach(s=>{s.a+=s.s;s.y+=Math.sin(s.a)*.05;gx.globalAlpha=.6+Math.sin(s.a)*.4;gx.beginPath();gx.arc(s.x,s.y,s.r,0,6.28);gx.fill();});
- gx.globalAlpha=1;requestAnimationFrame(galaxy);}
-galaxy();
-
-/* Falling stars */
-const c=document.getElementById("space"),ctx=c.getContext("2d");
-c.width=innerWidth;c.height=innerHeight;
-let sp=Array.from({length:200},()=>({x:Math.random()*c.width,y:Math.random()*c.height,s:Math.random()*1.5+.5}));
-function space(){
- ctx.fillStyle="black";ctx.fillRect(0,0,c.width,c.height);
- ctx.fillStyle="white";
- sp.forEach(st=>{st.y+=st.s;if(st.y>c.height){st.y=0;st.x=Math.random()*c.width}ctx.fillRect(st.x,st.y,st.s,st.s)});
- requestAnimationFrame(space);}
-space();
-onresize=()=>{resizeBG();rs();}
-
-/* RANDOM FINAL QUOTES */
-const finalQuotes=[
-"Alam semesta terlalu luas untuk ditakuti, dan terlalu indah untuk diabaikan.",
-"Seperti bintang yang tetap bersinar di gelapnya malam — kamu juga begitu.",
-"Walau kita kecil di alam semesta, mimpi kita tak berbatas.",
-"Galaksi mengajarkan bahwa keindahan lahir dari jutaan hal kecil yang bersatu.",
-"Bahkan di ruang paling sunyi, masih ada sesuatu yang bersinar.",
-"Jika semesta saja terus berkembang, mengapa kita harus berhenti?",
-"Pulsar berdenyut tanpa henti — seperti harapan yang tak pernah padam.",
-"Nebula kacau, tapi dari sanalah bintang lahir. Begitu juga dengan hidup.",
-"Bintang neutron kecil namun kuat — sama seperti keberanianmu.",
-"Cahaya bintang selalu butuh gelap untuk terlihat.",
-"Setiap planet punya jalannya sendiri — dan kamu juga.",
-"Tak semua hal harus dimengerti, cukup dinikmati dan disyukuri."
+const quotes = [
+"Alam semesta tidak hanya lebih aneh dari yang kita bayangkan — tapi lebih aneh dari yang bisa kita bayangkan.",
+"Kita adalah debu bintang yang mencoba memahami asalnya.",
+"Jika kamu melihat jauh ke langit, kamu sedang melihat masa lalu.",
+"Di luar sana, bintang terus lahir tanpa pernah lelah.",
+"Semesta itu luas — tapi rasa penasaran manusia lebih luas lagi.",
+"Setiap bintang memiliki cerita, begitu juga manusia.",
+"Jangan berhenti menatap langit — di sanalah mimpi bermula.",
+"Keheningan luar angkasa menyimpan jutaan misteri.",
+"Mungkin kita kecil, tapi rasa ingin tahu kita tak terbatas.",
+"Langit malam adalah buku terbuka — kita hanya perlu belajar membacanya.",
+"Di antara milyaran bintang, kita hanya satu titik — tapi punya arti.",
+"Tak perlu jadi besar untuk bersinar — lihat saja bintang kecil.",
+"Semesta mengajarkan: semuanya butuh waktu untuk bersinar.",
+"Gravitasi menyatukan planet — hubungan baik menyatukan manusia.",
+"Selama masih ada langit, selalu ada tempat untuk bermimpi.",
+"Kosmos itu sunyi — tapi penuh jawaban.",
+"Bintang yang terang pernah melalui tekanan yang hebat.",
+"Seperti galaksi, hidup kita penuh misteri dan keindahan.",
+"Kadang kita harus tersesat untuk menemukan bintang penuntun.",
+"Semesta tidak terburu-buru — tapi selalu sampai tujuan.",
+"Memandang langit adalah cara sederhana untuk merasa tenang.",
+"Jarak yang jauh di luar angkasa mengingatkan kita untuk sabar.",
+"Kalau bintang saja bisa menyala dalam gelap — kamu juga bisa.",
+"Tak ada malam yang terlalu gelap jika kita tahu tempat mencari bintang.",
+"Bintang jatuh hanyalah debu — tapi tetap indah bagi yang melihat.",
+"Semesta tidak pernah lelah menciptakan keajaiban.",
+"Planet berputar, waktu berjalan — hidup pun terus maju.",
+"Galaksi terlihat kacau — tapi tetap punya harmoni.",
+"Sedikit rasa ingin tahu bisa membawa kita sangat jauh.",
+"Langit penuh misteri — dan kita penuh kemungkinan."
 ];
-document.getElementById("finalQuoteBox").innerText =
-finalQuotes[Math.floor(Math.random()*finalQuotes.length)];
+
+const q = document.getElementById("quote");
+q.innerText = quotes[Math.floor(Math.random()*quotes.length)];
+setTimeout(()=> q.classList.add("show"),150);
 </script>
 
 </body>
 </html>
-
