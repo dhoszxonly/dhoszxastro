@@ -126,7 +126,6 @@ h2{margin-bottom:10px;color:#ffdfff}
 
   <p id="quote"></p>
 
-  <!-- GALERI DENGAN ATRIBUTI NASA -->
   <div class="gallery">
 
     <div class="gallery-item">
@@ -198,7 +197,14 @@ const quotes = [
 ];
 
 const q = document.getElementById("quote");
-q.innerText = quotes[Math.floor(Math.random()*quotes.length)];
+
+// ambil kutipan random
+const randomQuote = quotes[Math.floor(Math.random()*quotes.length)];
+
+// format sesuai permintaan
+q.innerText = `MOTIVASI ANGKASA 🚀="${randomQuote}"`;
+
+// efek fade in
 setTimeout(()=> q.classList.add("show"),150);
 </script>
 
