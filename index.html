@@ -29,16 +29,31 @@ body::before{
 
 /* INTRO */
 .intro{text-align:center;padding:70px 10px}
+
+/* BLACKHOLE BARU — TANPA WARNA PELANGI */
 .blackhole{
-  width:180px;height:180px;margin:0 auto 25px;border-radius:50%;
-  background:radial-gradient(circle, black 15%, #2b0040 40%, transparent 70%);
-  box-shadow:0 0 50px 15px rgba(0,0,0,.8);position:relative;overflow:hidden;
+  width:180px;
+  height:180px;
+  margin:0 auto 25px;
+  border-radius:50%;
+  background:radial-gradient(circle, #000 25%, #0a0a0a 45%, #190a00 65%, transparent 80%);
+  box-shadow:0 0 60px 20px rgba(0,0,0,.9);
+  position:relative;
+  overflow:hidden;
 }
+
+/* RING KUNING–OREN */
 .blackhole::before{
-  content:"";position:absolute;inset:-40px;border-radius:50%;
-  background:conic-gradient(#7a00ff,#ff0095,#ff9100,#7a00ff);
-  filter:blur(4px);animation:ringspin 6s linear infinite;opacity:.9;
+  content:"";
+  position:absolute;
+  inset:-40px;
+  border-radius:50%;
+  background:conic-gradient(#ffae00,#ff5e00,#ff1e00,#ffae00);
+  filter:blur(6px);
+  animation:ringspin 5s linear infinite;
+  opacity:.9;
 }
+
 @keyframes ringspin{to{transform:rotate(360deg)}}
 
 section{
@@ -197,16 +212,10 @@ const quotes = [
 ];
 
 const q = document.getElementById("quote");
-
-// ambil kutipan random
-const randomQuote = quotes[Math.floor(Math.random()*quotes.length)];
-
-// format sesuai permintaan
-q.innerText = `MOTIVASI ANGKASA 🚀="${randomQuote}"`;
-
-// efek fade in
+q.innerText = "MOTIVASI ANGKASA 🚀 = " + quotes[Math.floor(Math.random()*quotes.length)];
 setTimeout(()=> q.classList.add("show"),150);
 </script>
 
 </body>
 </html>
+
