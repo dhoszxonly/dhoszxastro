@@ -3,176 +3,307 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🌙 Menjelajahi Angkasa • Ramadhan Vibes 🚀</title>
+<title>🌙 Menjelajahi Angkasa • Ramadhan Cosmic 🚀</title>
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,Helvetica,sans-serif}
 
 body{
-  color:#fff;
-  min-height:200vh;
-  overflow-x:hidden;
-  background:linear-gradient(to bottom,#050510,#000);
-  transition:background 1s;
+color:#fff;
+min-height:200vh;
+overflow-x:hidden;
+background:linear-gradient(to bottom,#050510,#000);
+transition:background 1s;
 }
 
-/* STAR LAYER 1 */
+/* NEBULA */
+.nebula{
+position:fixed;
+width:100%;
+height:100%;
+background:
+radial-gradient(circle at 30% 40%,rgba(255,0,150,.15),transparent 40%),
+radial-gradient(circle at 70% 60%,rgba(0,150,255,.15),transparent 40%),
+radial-gradient(circle at 50% 80%,rgba(255,150,0,.15),transparent 40%);
+z-index:-4;
+filter:blur(80px);
+}
+
+/* STARFIELD */
 .stars{
-  position:fixed;
-  width:100%;
-  height:100%;
-  background:
-    radial-gradient(2px 2px at 20% 30%,#fff,transparent),
-    radial-gradient(2px 2px at 70% 60%,#fff,transparent),
-    radial-gradient(1.5px 1.5px at 40% 80%,#fff,transparent),
-    radial-gradient(2px 2px at 85% 20%,#fff,transparent),
-    radial-gradient(2px 2px at 10% 70%,#fff,transparent);
-  animation:twinkle 4s infinite alternate;
-  z-index:-3;
+position:fixed;
+width:100%;
+height:100%;
+background:
+radial-gradient(2px 2px at 20% 30%,#fff,transparent),
+radial-gradient(2px 2px at 70% 60%,#fff,transparent),
+radial-gradient(1.5px 1.5px at 40% 80%,#fff,transparent),
+radial-gradient(2px 2px at 85% 20%,#fff,transparent),
+radial-gradient(2px 2px at 10% 70%,#fff,transparent);
+animation:twinkle 4s infinite alternate;
+z-index:-3;
 }
 
 @keyframes twinkle{
-  from{opacity:.4}
-  to{opacity:1}
-}
-
-/* SHOOTING STAR */
-.shooting{
-  position:fixed;
-  top:0;
-  left:-300px;
-  width:200px;
-  height:2px;
-  background:linear-gradient(90deg,#fff,transparent);
-  animation:shoot 10s linear infinite;
-}
-
-@keyframes shoot{
-  0%{transform:translate(0,0);opacity:0}
-  10%{opacity:1}
-  100%{transform:translate(160vw,80vh);opacity:0}
+from{opacity:.4}
+to{opacity:1}
 }
 
 /* MOON */
 .moon{
-  position:fixed;
-  top:80px;
-  right:10%;
-  width:130px;height:130px;
-  border-radius:50%;
-  background:#fff8c6;
-  box-shadow:0 0 60px #ffe066,0 0 120px #ffd700;
+position:fixed;
+top:80px;
+right:10%;
+width:130px;height:130px;
+border-radius:50%;
+background:#fff8c6;
+box-shadow:0 0 60px #ffe066,0 0 120px #ffd700;
 }
+
 .moon::after{
-  content:"";
-  position:absolute;
-  width:130px;height:130px;
-  border-radius:50%;
-  background:#050510;
-  left:45px;top:-10px;
+content:"";
+position:absolute;
+width:130px;height:130px;
+border-radius:50%;
+background:#050510;
+left:45px;top:-10px;
+}
+
+/* PLANETS */
+.planet{
+position:fixed;
+width:60px;height:60px;
+border-radius:50%;
+background:linear-gradient(45deg,#ff8c00,#ffcc00);
+top:350px;
+left:10%;
+box-shadow:0 0 25px #ff9900;
+animation:orbit 40s linear infinite;
+}
+
+@keyframes orbit{
+from{transform:rotate(0deg) translateX(200px) rotate(0deg);}
+to{transform:rotate(360deg) translateX(200px) rotate(-360deg);}
+}
+
+.planet2{
+position:fixed;
+width:40px;height:40px;
+border-radius:50%;
+background:linear-gradient(45deg,#00ffff,#0099ff);
+top:200px;
+left:60%;
+box-shadow:0 0 20px cyan;
+animation:orbit2 60s linear infinite;
+}
+
+@keyframes orbit2{
+from{transform:rotate(0deg) translateX(250px) rotate(0deg);}
+to{transform:rotate(360deg) translateX(250px) rotate(-360deg);}
+}
+
+.planet3{
+position:fixed;
+width:30px;height:30px;
+border-radius:50%;
+background:linear-gradient(45deg,#ff00ff,#9900ff);
+top:500px;
+left:40%;
+box-shadow:0 0 20px magenta;
+animation:orbit3 80s linear infinite;
+}
+
+@keyframes orbit3{
+from{transform:rotate(0deg) translateX(300px) rotate(0deg);}
+to{transform:rotate(360deg) translateX(300px) rotate(-360deg);}
+}
+
+/* SATELLITE */
+.satellite{
+position:fixed;
+top:120px;
+left:-100px;
+font-size:22px;
+animation:satfly 40s linear infinite;
+}
+
+@keyframes satfly{
+0%{transform:translateX(0)}
+100%{transform:translateX(120vw)}
+}
+
+/* METEOR */
+.shooting{
+position:fixed;
+width:200px;height:2px;
+background:linear-gradient(90deg,#fff,transparent);
+animation:shoot linear forwards;
+}
+
+@keyframes shoot{
+0%{transform:translate(0,0);opacity:0}
+10%{opacity:1}
+100%{transform:translate(160vw,80vh);opacity:0}
 }
 
 /* CONTENT */
 .container{
-  max-width:900px;
-  margin:auto;
-  padding:40px 20px;
-  text-align:center;
+max-width:900px;
+margin:auto;
+padding:40px 20px;
+text-align:center;
 }
 
 h1{
-  margin-top:150px;
-  font-size:32px;
-  text-shadow:0 0 30px #ffd700;
+margin-top:150px;
+font-size:32px;
+text-shadow:0 0 30px #ffd700;
 }
 
 .subtitle{
-  color:#ffd700;
-  margin:10px 0 20px;
+color:#ffd700;
+margin:10px 0 20px;
 }
 
 .clock{
-  font-size:20px;
-  margin-bottom:30px;
-  color:#ffdd99;
+font-size:20px;
+margin-bottom:30px;
+color:#ffdd99;
 }
 
 section{
-  margin:40px 0;
-  background:rgba(0,0,0,.5);
-  padding:25px;
-  border-radius:20px;
-  backdrop-filter:blur(6px);
+margin:40px 0;
+background:rgba(0,0,0,.5);
+padding:25px;
+border-radius:20px;
+backdrop-filter:blur(6px);
 }
 
 h2{color:#ffdd99;margin-bottom:10px}
 
 #quote{
-  margin:60px 0 20px;
-  min-height:120px;
-  font-size:18px;
-  color:#fff2c7;
-  transition:.5s;
-  white-space:pre-line;
+margin:60px 0 20px;
+min-height:120px;
+font-size:18px;
+color:#fff2c7;
+white-space:pre-line;
 }
 
 button{
-  padding:14px 30px;
-  border:none;
-  border-radius:30px;
-  background:linear-gradient(135deg,#ffd700,#ff9900);
-  font-weight:bold;
-  cursor:pointer;
-  margin:5px;
+padding:14px 30px;
+border:none;
+border-radius:30px;
+background:linear-gradient(135deg,#ffd700,#ff9900);
+font-weight:bold;
+cursor:pointer;
+margin:5px;
 }
+
 button:hover{transform:scale(1.08)}
 
 .maghrib{
-  background:linear-gradient(to bottom,#14001f,#000);
+background:linear-gradient(to bottom,#1a0029,#000);
 }
 </style>
 </head>
 
 <body>
 
+<div class="nebula"></div>
 <div class="stars"></div>
-<div class="shooting"></div>
 <div class="moon"></div>
+
+<div class="planet"></div>
+<div class="planet2"></div>
+<div class="planet3"></div>
+
+<div class="satellite">🛰</div>
 
 <div class="container">
 
-<h1>🌙 Menjelajahi Angkasa, Ramadhan Vibes 🚀</h1>
-<div class="subtitle">Jakarta Timur | Galaxy Sultan Edition</div>
+<h1>🌙 Menjelajahi Angkasa • Ramadhan Cosmic 🚀</h1>
+<div class="subtitle">Website By Dhoszx</div>
+
 <div class="clock" id="clock"></div>
 
 <section>
 <h2>⭐ Bintang</h2>
-<p>Bintang terbentuk dari awan gas raksasa bernama nebula dan menghasilkan energi melalui fusi nuklir di intinya.</p>
+<p>
+Bintang adalah bola gas raksasa yang sangat panas yang menghasilkan energi melalui proses fusi nuklir di inti mereka.
+Energi ini membuat bintang memancarkan cahaya yang dapat terlihat dari jarak yang sangat jauh di alam semesta.
+</p>
+<p>
+Bintang lahir dari awan gas dan debu kosmik yang disebut nebula. Ketika nebula runtuh akibat gravitasi,
+materi di dalamnya memanas dan mulai membentuk inti bintang baru.
+</p>
 </section>
 
 <section>
 <h2>🪐 Planet</h2>
-<p>Planet mengorbit bintang dan tidak memancarkan cahaya sendiri, tetapi memantulkan cahaya dari bintang induknya.</p>
+<p>
+Planet adalah benda langit yang mengorbit sebuah bintang dan tidak menghasilkan cahaya sendiri.
+Planet terlihat bercahaya karena memantulkan cahaya dari bintang yang mereka orbit.
+</p>
+<p>
+Planet dapat berupa planet berbatu seperti Bumi atau planet gas raksasa seperti Jupiter.
+Beberapa planet memiliki cincin yang indah serta puluhan satelit alami.
+</p>
 </section>
 
 <section>
 <h2>🌌 Nebula</h2>
-<p>Nebula adalah tempat kelahiran bintang baru, penuh debu kosmik dan gas bercahaya.</p>
+<p>
+Nebula adalah awan besar yang terdiri dari gas dan debu kosmik.
+Nebula sering disebut sebagai tempat kelahiran bintang karena di dalamnya
+terjadi proses pembentukan bintang baru.
+</p>
 </section>
 
 <section>
 <h2>🕳 Black Hole</h2>
-<p>Black hole memiliki gravitasi ekstrem hingga cahaya pun tidak bisa lolos dari tarikan gravitasinya.</p>
+<p>
+Black hole adalah objek kosmik dengan gravitasi yang sangat kuat
+hingga cahaya pun tidak dapat lolos darinya.
+</p>
+<p>
+Black hole biasanya terbentuk ketika bintang sangat besar runtuh
+di akhir masa hidupnya.
+</p>
 </section>
 
 <section>
 <h2>🌠 Galaksi</h2>
-<p>Galaksi adalah kumpulan miliaran bintang, gas, dan debu kosmik seperti Bima Sakti tempat kita berada.</p>
+<p>
+Galaksi adalah kumpulan miliaran bintang, planet, gas,
+dan debu kosmik yang terikat oleh gravitasi.
+</p>
+<p>
+Galaksi tempat kita tinggal disebut Bima Sakti atau Milky Way.
+</p>
+</section>
+
+<section>
+<h2>🚀 Alam Semesta</h2>
+<p>
+Alam semesta mencakup seluruh ruang dan waktu yang berisi semua galaksi,
+bintang, planet, energi, dan materi yang ada.
+</p>
+<p>
+Para ilmuwan percaya alam semesta terbentuk sekitar 13,8 miliar tahun lalu
+melalui peristiwa yang dikenal sebagai Big Bang.
+</p>
 </section>
 
 <section>
 <h2>🕌 Refleksi Ramadhan</h2>
-<p>Ramadhan melatih disiplin, kesabaran, dan konsistensi dalam orbit kebaikan.</p>
+<p>
+Ramadhan adalah bulan latihan spiritual bagi umat Islam.
+Di bulan ini manusia belajar disiplin, kesabaran, dan keikhlasan.
+</p>
+<p>
+Seperti planet yang tetap berada di orbitnya,
+manusia juga perlu menjaga konsistensi dalam berbuat kebaikan.
+</p>
 </section>
 
 <p id="quote"></p>
@@ -184,88 +315,74 @@ button:hover{transform:scale(1.08)}
 
 <script>
 
-/* AMBIENT SOUND */
-let audioCtx;
-let ambientOn=false;
-let oscillator;
-
-function toggleAmbient(){
-  if(!audioCtx){
-    audioCtx=new(window.AudioContext||window.webkitAudioContext)();
-  }
-
-  if(!ambientOn){
-    oscillator=audioCtx.createOscillator();
-    const gain=audioCtx.createGain();
-    oscillator.type="sine";
-    oscillator.frequency.value=55;
-    gain.gain.value=0.02;
-    oscillator.connect(gain);
-    gain.connect(audioCtx.destination);
-    oscillator.start();
-    ambientOn=true;
-    document.getElementById("soundBtn").innerText="🔊 Ambient ON";
-  }else{
-    oscillator.stop();
-    ambientOn=false;
-    document.getElementById("soundBtn").innerText="🔇 Ambient OFF";
-  }
-}
-
-/* JAM JAKARTA */
+/* CLOCK */
 function updateClock(){
-  const now=new Date();
-  const options={timeZone:"Asia/Jakarta",hour12:false,hour:"2-digit",minute:"2-digit",second:"2-digit"};
-  const time=new Intl.DateTimeFormat("id-ID",options).format(now);
-  document.getElementById("clock").innerText="Waktu Jakarta Timur: "+time;
-
-  const hour=parseInt(new Intl.DateTimeFormat("id-ID",{timeZone:"Asia/Jakarta",hour:"2-digit"}).format(now));
-  if(hour>=17 && hour<=18){
-    document.body.classList.add("maghrib");
-  }else{
-    document.body.classList.remove("maghrib");
-  }
+const now=new Date();
+const options={timeZone:"Asia/Jakarta",hour12:false,hour:"2-digit",minute:"2-digit",second:"2-digit"};
+const time=new Intl.DateTimeFormat("id-ID",options).format(now);
+document.getElementById("clock").innerText="Waktu Jakarta: "+time;
 }
 setInterval(updateClock,1000);
 updateClock();
 
-/* MOTIVASI UPGRADE */
+/* METEOR */
+function createStar(){
+const star=document.createElement("div");
+star.className="shooting";
+star.style.top=Math.random()*window.innerHeight+"px";
+star.style.left="-200px";
+star.style.animationDuration=(5+Math.random()*5)+"s";
+document.body.appendChild(star);
+setTimeout(()=>{star.remove();},8000);
+}
+setInterval(createStar,2000);
+
+/* MOTIVASI */
 const quotes=[
-`Ramadhan adalah orbit perbaikan diri. Jangan berhenti berproses meski lambat.`,
-`Semakin gelap malam, semakin jelas cahaya bintang.`,
-`Puasa melatih kontrol diri dan memperkuat mental.`,
-`Setiap doa adalah cahaya yang menembus langit.`,
-`Kesabaran adalah gravitasi hati.`,
-`Konsistensi kecil lebih kuat daripada semangat sesaat.`,
-`Seperti planet yang stabil di orbitnya, tetaplah istiqomah.`,
-`Nebula terlihat kabur, tapi darinya lahir bintang.`,
-`Jangan redup sebelum waktunya bersinar.`,
-`Ramadhan adalah waktu upgrade iman.`,
-`Tenang seperti angkasa, luas dan tidak mudah goyah.`,
-`Kebaikan kecil tetap bercahaya.`,
-`Disiplin hari ini, hasil besar nanti.`,
-`Hidup seperti galaksi, penuh misteri dan keindahan.`,
-`Terus bergerak meski perlahan.`,
-`Langit berubah, semangat juga harus naik.`,
-`Doa adalah energi terbesar dalam hidup.`,
-`Jangan bandingkan cahayamu dengan orang lain.`,
-`Ramadhan adalah reset hati.`,
-`Orbit kebaikan jangan pernah putus.`
+"Ramadhan adalah orbit perbaikan diri. Setiap hari adalah kesempatan untuk menjadi lebih baik dari sebelumnya.",
+"Langit malam mengajarkan bahwa bahkan dalam kegelapan, bintang tetap bersinar.",
+"Kesabaran adalah kekuatan yang menjaga hati tetap stabil seperti gravitasi.",
+"Disiplin kecil setiap hari akan menghasilkan perubahan besar di masa depan.",
+"Seperti planet yang bergerak di orbitnya, manusia juga harus terus bergerak maju.",
+"Jangan takut bersinar walau dunia terasa gelap.",
+"Setiap doa adalah cahaya yang menembus langit.",
+"Ramadhan adalah waktu terbaik untuk mereset hati dan memperbaiki diri.",
+"Semakin gelap malam, semakin jelas bintang terlihat.",
+"Kebaikan kecil tetap memiliki cahaya di alam semesta kehidupan."
 ];
 
 function newQuote(){
-  const q=document.getElementById("quote");
-  q.style.opacity=0;
-  setTimeout(()=>{
-    const random=Math.floor(Math.random()*quotes.length);
-    q.innerText="🌙 MOTIVASI COSMIC 🌙\n\n"+quotes[random];
-    q.style.opacity=1;
-  },200);
+const q=document.getElementById("quote");
+const random=Math.floor(Math.random()*quotes.length);
+q.innerText="🌙 MOTIVASI COSMIC 🌙\n\n"+quotes[random];
 }
+
 newQuote();
 setInterval(newQuote,20000);
 
-</script>
+/* AMBIENT SOUND */
+let audioCtx;let ambientOn=false;let oscillator;
 
+function toggleAmbient(){
+if(!audioCtx){audioCtx=new(window.AudioContext||window.webkitAudioContext)();}
+if(!ambientOn){
+oscillator=audioCtx.createOscillator();
+const gain=audioCtx.createGain();
+oscillator.type="sine";
+oscillator.frequency.value=55;
+gain.gain.value=0.02;
+oscillator.connect(gain);
+gain.connect(audioCtx.destination);
+oscillator.start();
+ambientOn=true;
+document.getElementById("soundBtn").innerText="🔊 Ambient ON";
+}else{
+oscillator.stop();
+ambientOn=false;
+document.getElementById("soundBtn").innerText="🔇 Ambient OFF";
+}
+}
+
+</script>
 </body>
 </html>
